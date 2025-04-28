@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-left">
+                <span class="logo">ExpenseTracker</span>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Home</a>
+                <a href="#" class="nav-link" data-page="income"><i class="fas fa-money-bill-wave"></i> Income</a>
+                <a href="#" class="nav-link" data-page="expense"><i class="fas fa-shopping-cart"></i> Expense</a>
+                <a href="#" class="nav-link" data-page="progress"><i class="fas fa-chart-line"></i> Progress</a>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Home Page -->
+            <section id="home" class="page active">
+                <div class="hero">
+                    <h1>Welcome to ExpenseTracker</h1>
+                    <p>Track your income and expenses effortlessly to manage your finances better.</p>
+                </div>
+                
+                <div class="summary-cards">
+                    <div class="card income-card">
+                        <h3>Total Income</h3>
+                        <p class="amount" id="total-income">₹0</p>
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="card expense-card">
+                        <h3>Total Expense</h3>
+                        <p class="amount" id="total-expense">₹0</p>
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="card balance-card">
+                        <h3>Balance</h3>
+                        <p class="amount" id="total-balance">₹0</p>
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                </div>
+
+                <div class="recent-transactions">
+                    <h2>Recent Transactions</h2>
+                    <div class="transactions-list" id="recent-transactions">
+                        <!-- Transactions will be added here dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Income Page -->
+            <section id="income" class="page">
+                <h2>Add Income</h2>
+                <form id="income-form" class="form">
+                    <div class="form-group">
+                        <label for="income-source">Source</label>
+                        <select id="income-source" required>
+                            <option value="">Select Source</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Freelance">Freelance</option>
+                            <option value="Investment">Investment</option>
+                            <option value="Gift">Gift</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="income-description">Description</label>
+                        <input type="text" id="income-description" placeholder="Optional description">
+                    </div>
+                    <div class="form-group">
+                        <label for="income-amount">Amount (₹)</label>
+                        <input type="number" id="income-amount" placeholder="Enter amount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="income-date">Date</label>
+                        <input type="date" id="income-date" required>
+                    </div>
+                    <button type="submit" class="btn btn-income">Add Income</button>
+                </form>
+
+                <div class="income-list">
+                    <h2>Income History</h2>
+                    <div class="transactions-list" id="income-history">
+                        <!-- Income transactions will be added here dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Expense Page -->
+            <section id="expense" class="page">
+                <h2>Add Expense</h2>
+                <form id="expense-form" class="form">
+                    <div class="form-group">
+                        <label for="expense-category">Category</label>
+                        <select id="expense-category" required>
+                            <option value="">Select Category</option>
+                            <option value="Food">Food</option>
+                            <option value="Transportation">Transportation</option>
+                            <option value="Housing">Housing</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Education">Education</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-description">Description</label>
+                        <input type="text" id="expense-description" placeholder="Optional description">
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-amount">Amount (₹)</label>
+                        <input type="number" id="expense-amount" placeholder="Enter amount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-date">Date</label>
+                        <input type="date" id="expense-date" required>
+                    </div>
+                    <button type="submit" class="btn btn-expense">Add Expense</button>
+                </form>
+
+                <div class="expense-list">
+                    <h2>Expense History</h2>
+                    <div class="transactions-list" id="expense-history">
+                        <!-- Expense transactions will be added here dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Page -->
+            <section id="progress" class="page">
+                <h2>Financial Progress</h2>
+                <div class="chart-container">
+                    <canvas id="finance-chart"></canvas>
+                </div>
+                
+                <div class="category-breakdown">
+                    <div class="category-card">
+                        <h3>Income Sources</h3>
+                        <div class="category-list" id="income-sources">
+                            <!-- Income categories will be added here dynamically -->
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <h3>Expense Categories</h3>
+                        <div class="category-list" id="expense-categories">
+                            <!-- Expense categories will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
